@@ -1,0 +1,1 @@
+export const API_KEY = 'http://www.omdbapi.com/?i=tt3896198&apikey=539163f1';
