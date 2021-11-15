@@ -1,27 +1,28 @@
-@import '../../common/colors.scss';
+@import "../../common/colors.scss";
 
 .header {
-    background-color: $secondary-color;
-    height: 60px;
-    padding: 0 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+	background-color: $secondary-color;
+	height: 60px;
+	padding: 0 40px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
-.logo{
-display: flex;
-align-items: center;
-text-align: center;
-font-weight: 600;
-font-size: 30px;
-}
-
-img{
-    width: 50px;
+.logo {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	font-weight: 100;
+	font-size: 30px;
+	font-family: "Praise", cursive;
 }
 
-a{
-    text-decoration: none;
-    color: $font-primary;
+#header-img {
+	width: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: $font-primary;
 }
