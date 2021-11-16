@@ -1,67 +1,77 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import MovieApi from "../common/apis/MovieApi";
-import { API_KEY } from "../common/apis/MovieApiKey";
+import { SEARCH_BASE_URL, POPULAR_BASE_URL, API_URL, API_KEY } from "../config";
 
-const movieSearch = "fast";
-const seriesSearch = "evil";
-export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async () => {
-	const res = await MovieApi.get(`?apikey=${API_KEY}&s=${movieSearch}&type=movie`);
-	console.log(res);
-	return res.data;
+const defaultConfig = {
+	method: "POST",
+	headers: {
+		"Content-Type": "application/json",
+	},
+};
+console.log(API_KEY);
+console.log(SEARCH_BASE_URL);
+export const fetchMovies = createAsyncThunk("movies/fetchAsyncMovies", async (searchTerm, page) => {
+	const endpoint = searchTerm
+		? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+		: `${POPULAR_BASE_URL}&page=${page}`;
+
+	const response = await fetch(endpoint);
+	const movies = await response.json();
+
+	return movies;
 });
-export const fetchAsyncShows = createAsyncThunk("shows/fetchAsyncShows", async () => {
-	const res = await MovieApi.get(`?apikey=${API_KEY}&s=${seriesSearch}&type=series`);
-	console.log(res);
-	return res.data;
+
+export const fetchMovie = createAsyncThunk("movies/fetchAsyncMovie", async (movieId) => {
+	const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+	return await (await fetch(endpoint)).json();
 });
-export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
-	"movies/fetchAsyncMovieOrShowDetail",
-	async (id) => {
-		const res = await MovieApi.get(`?apikey=${API_KEY}&i=${id}&Plot=full`);
-		console.log(res);
-		return res.data;
-	}
-);
+
+export const fetchCredits = createAsyncThunk("movies/fetchAsyncCredits", async (movieId) => {
+	const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+	return await (await fetch(creditsEndpoint)).json();
+});
 
 const initialState = {
 	movies: [],
-	shows: [],
-	selectedMovieOrShow: [],
+	movie: [],
+	credits: [],
 };
 
 const movieSlice = createSlice({
 	name: "movies",
 	initialState,
-	// reducers: {
-	// 	addMovies: (state, { payload }) => {
-	// 		state.movies = payload;
-	// 	},
-	// },
+	reducers: {
+		// A reducer that resets the selected movie state to an empty array
+		removeDetails: (state) => {
+			state.credits = [];
+			state.movie = [];
+		},
+	},
 	extraReducers: {
-		[fetchAsyncMovies.pending]: () => {
+		[fetchMovies.pending]: () => {
 			console.log("pending");
 		},
-		[fetchAsyncMovies.fulfilled]: (state, { payload }) => {
+
+		[fetchMovies.fulfilled]: (state, { payload }) => {
 			console.log("fulfilled");
 			return { ...state, movies: payload };
 		},
-		[fetchAsyncMovies.rejected]: () => {
+		[fetchMovies.rejected]: () => {
 			console.log("rejected");
 		},
 
-		[fetchAsyncShows.fulfilled]: (state, { payload }) => {
+		[fetchMovie.fulfilled]: (state, { payload }) => {
 			console.log("fulfilled");
-			return { ...state, shows: payload };
+			return { ...state, movie: payload };
 		},
-		[fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
+		[fetchCredits.fulfilled]: (state, { payload }) => {
 			console.log("fulfilled");
-			return { ...state, selectedMovieOrShow: payload };
+			return { ...state, credits: payload };
 		},
 	},
 });
 
-// export const { addMovies } = movieSlice.actions;
-export const getAllMovies = (state) => state.movies.movies;
-export const getAllShows = (state) => state.movies.shows;
-export const getSelectedMovieOrShow = (state) => state.movies.selectedMovieOrShow;
+export const { removeDetails } = movieSlice.actions;
+export const getMovies = (state) => state.movies.movies;
+export const getMovie = (state) => state.movies.movie;
+export const getCredits = (state) => state.movies.credits;
 export default movieSlice.reducer;

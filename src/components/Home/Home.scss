@@ -1,0 +1,12 @@
+.home {
+	animation: animateMovieInfo 1s;
+
+	@keyframes animateMovieInfo {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}

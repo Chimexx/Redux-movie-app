@@ -3,18 +3,28 @@ import { Link } from "react-router-dom";
 import User from "../../images/user.png";
 import "./Header.scss";
 import { useDispatch } from "react-redux";
-import { fetchMovies } from "../../redux/movieSlice";
+import { fetchAsyncMovies, fetchAsyncShows } from "../../redux/movieSlice";
 
 const Header = () => {
 	const dispatch = useDispatch();
-	const [searchTerm, setSearchTerm] = useState("");
+	const [searchWord, setSearchWord] = useState("");
+	console.log(searchWord);
 
 	useEffect(() => {
 		const searchHandler = () => {
-			dispatch(fetchMovies(searchTerm));
+			if (searchWord.length === 0) {
+				return;
+			} else {
+				dispatch(fetchAsyncMovies(searchWord));
+				dispatch(fetchAsyncShows(searchWord));
+				// setSearchWord("");
+				// return () => {
+				// 	dispatch(removeSelectedMovieOrShow());
+				// };
+			}
 		};
 		searchHandler();
-	}, [searchTerm, dispatch]);
+	}, [searchWord, dispatch]);
 
 	return (
 		<div className="header">
@@ -25,7 +35,7 @@ const Header = () => {
 				<input
 					type="text"
 					placeholder="Search Movie or Tv show"
-					onChange={(e) => setSearchTerm(e.target.value)}
+					onChange={(e) => setSearchWord(e.target.value)}
 				/>
 				<img id="header-img" src={User} alt="" />
 			</div>
