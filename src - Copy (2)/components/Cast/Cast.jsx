@@ -12,7 +12,7 @@ const Cast = ({ credits }) => {
 	const NoImage = "https://bitsofco.de/content/images/2018/12/broken-1.png";
 	return (
 		<Container>
-			{credits?.cast?.map((actor) => (
+			{credits.cast?.map((actor) => (
 				<CastCard
 					credits={actor}
 					key={actor.id}

@@ -1,32 +1,34 @@
-@import '../src/common/colors.scss';
+@import "../src/common/colors.scss";
 
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-};
-
-a{
-    text-decoration: none;
-};
-
-body{
-    background-color: $primary-color;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Open Sans", sans-serif;
 }
-.container{
-    color: $font-primary;
-    margin: 0 40px;
-    margin-top: 20px;
 
+a {
+	text-decoration: none;
 }
-.footer{
-    background-color: $secondary-color;
-    color: $font-primary;
-    padding: 0 40px;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    text-justify: center ;
 
+body {
+	background-color: $primary-color;
+}
+.container {
+	color: $font-primary;
+	margin: 0 40px;
+	margin-top: 20px;
+
+	@media screen and (max-width: 768px) {
+		margin: 0 10px;
+	}
+}
+.footer {
+	background-color: $secondary-color;
+	color: $font-primary;
+	padding: 0 40px;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	text-justify: center;
 }

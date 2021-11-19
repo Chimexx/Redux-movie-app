@@ -8,10 +8,6 @@ export const Container = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	margin-top: 20px;
-
-	@media screen and (max-width: 768px) {
-		width: 100px;
-	}
 `;
 export const CardBottom = styled.div`
 	padding: 0 5px;
@@ -23,20 +19,13 @@ export const Img = styled.img`
 export const Name = styled.h4`
 	font-size: 14px;
 	font-weight: 400;
-
-	@media screen and (max-width: 768px) {
-		font-size: 10px;
-	}
 `;
 export const Character = styled.h5`
 	font-size: 12px;
 	font-weight: 100;
 	margin-bottom: 5px;
-
-	@media screen and (max-width: 768px) {
-		font-size: 10px;
-	}
 `;
 export const Span = styled.span`
 	color: #ffbb00;
 `;
+// export const Container = styled.div``
