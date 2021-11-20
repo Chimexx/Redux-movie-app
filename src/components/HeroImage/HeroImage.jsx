@@ -1,12 +1,14 @@
-import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../config";
-
 import { Wrapper, Content, Text } from "../HeroImage/HeroImage.styles";
+import Spinner from "../Spinner";
 
-const HeroImage = ({ movies }) => {
-	const image = `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.results[0].backdrop_path}`;
-	const title = movies.results[0].title;
-	const text = movies.results[0].overview;
-
+const HeroImage = ({ image, title, text, fetching }) => {
+	if (fetching) {
+		return (
+			<>
+				<Spinner />
+			</>
+		);
+	}
 	return (
 		<>
 			<Wrapper image={image}>

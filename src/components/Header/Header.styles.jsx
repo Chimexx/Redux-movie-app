@@ -31,6 +31,7 @@ export const Logo = styled.div`
 	font-weight: 100;
 	font-size: 30px;
 	font-family: "Praise", cursive;
+	color: #fff;
 
 	@media screen and (max-width: 768px) {
 		font-size: 30px;

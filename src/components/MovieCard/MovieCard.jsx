@@ -1,5 +1,4 @@
 import React from "react";
-import "./MovieCard.scss";
 import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import { Card, Img } from "./MovieCard.styles";

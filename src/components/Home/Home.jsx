@@ -5,7 +5,8 @@ import HeroImage from "../HeroImage/HeroImage";
 import { getMovies, getSearch, isFetching, isError } from "../../redux/moviesSlice";
 import { fetchAsyncMovies, fetchAsyncSearch } from "../../redux/apiCalls";
 import { Container, ButtonContainer, Button, SearchBar, Input, HeaderText } from "./Home.styles";
-import Spinner from "../Spinner";
+import Spinner from ".././Spinner";
+import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../config";
 
 const Home = () => {
 	const [page, setPage] = useState(1);
@@ -33,10 +34,8 @@ const Home = () => {
 		movies = moviesFetch;
 	}
 
-	console.log(movies);
 	const pageInc = () => {
 		setPage(page + 1);
-		console.log(page);
 	};
 	const pageDec = () => {
 		if (page === 1) {
@@ -44,15 +43,10 @@ const Home = () => {
 		} else {
 			setPage(page - 1);
 		}
-		console.log(page);
 	};
 
 	if (fetching) {
-		return (
-			<>
-				<Spinner />
-			</>
-		);
+		return <Spinner />;
 	}
 
 	if (error) {
@@ -61,7 +55,14 @@ const Home = () => {
 
 	return (
 		<Container>
-			{!searchTerm && <HeroImage movies={movies} />}
+			{!searchTerm && (
+				<HeroImage
+					image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.results[0].backdrop_path}`}
+					title={movies.results[0].title}
+					text={movies.results[0].overview}
+					fetching={fetching}
+				/>
+			)}
 			<SearchBar>
 				<HeaderText>{searchTerm ? "Results" : "Movies"}</HeaderText>
 				<Input

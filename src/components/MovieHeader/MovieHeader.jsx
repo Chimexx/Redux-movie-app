@@ -11,14 +11,15 @@ import {
 	MovieInfo,
 } from "./MovieHeader.styles";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
+import Spinner from "../Spinner";
+import Meter from "../Meter/Meter";
+import { convertMoney, convertTime } from "../../converter";
 
 const MovieHeader = ({ movie }) => {
 	return (
 		<div>
 			{Object.keys(movie)?.length === 0 ? (
-				<div className="loading">
-					<h1>...Loading</h1>
-				</div>
+				<Spinner />
 			) : (
 				<Header backdrop={movie.backdrop_path}>
 					<Info image={movie.backdrop_path}>
@@ -39,13 +40,17 @@ const MovieHeader = ({ movie }) => {
 						)}
 						<Details>
 							<MovieInfo>
-								<Span>Director:</Span>
-								<span>{movie.Director}</span>
+								<Span>Time:</Span>
+								<span>{convertTime(movie.runtime)}</span>
 							</MovieInfo>
 							<MovieInfo>
 								<Span>Genre: </Span>
 								{movie.genres.map((entry) => {
-									return <span key={entry.id}>{entry.name}, </span>;
+									return (
+										<span key={entry.id}>
+											{movie.genres.length > 1 ? `${entry.name}, ` : ""}
+										</span>
+									);
 								})}
 							</MovieInfo>
 							<MovieInfo>
@@ -54,11 +59,11 @@ const MovieHeader = ({ movie }) => {
 							</MovieInfo>
 							<MovieInfo>
 								<Span>Revenue: </Span>
-								<span>${movie.revenue}</span>
+								<span>{convertMoney(movie.revenue)}</span>
 							</MovieInfo>
 							<MovieInfo>
 								<Span>Ratings: </Span>
-								{movie.vote_average}
+								<Meter rating={movie.vote_average} />
 							</MovieInfo>
 						</Details>
 					</Info>

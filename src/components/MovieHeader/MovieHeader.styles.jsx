@@ -51,7 +51,6 @@ export const Info = styled.div`
 	justify-content: space-between;
 
 	@media screen and (max-width: 768px) {
-		/* background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%); */
 		flex: none;
 	}
 `;

@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import Spinner from "../Spinner";
 import { useLocation } from "react-router-dom";
 import Cast from "../Cast/Cast";
 import MovieHeader from "../MovieHeader/MovieHeader";
 import { CastTitle, Title } from "./MovieDetails.styles";
 import { getCredits, getMovie, isFetching } from "../../redux/moviesSlice";
 import { fetchAsyncCredits, fetchAsyncMovie } from "../../redux/apiCalls";
+import Spinner from ".././Spinner";
 
 const MovieDetail = () => {
 	const location = useLocation();
@@ -17,10 +16,6 @@ const MovieDetail = () => {
 	useEffect(() => {
 		dispatch(fetchAsyncMovie(id));
 		dispatch(fetchAsyncCredits(id));
-
-		// return () => {
-		// 	clearMovie();
-		// };
 	}, [dispatch, id]);
 
 	const movie = useSelector(getMovie);

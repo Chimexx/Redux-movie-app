@@ -5,7 +5,7 @@ const Header = () => {
 	return (
 		<Head>
 			<Link to="/">
-				<Logo>Movie App</Logo>
+				<Logo>WebFlyck</Logo>
 			</Link>
 			<img src={User} alt="" />
 		</Head>

@@ -4,11 +4,6 @@ import { Container } from "./Cast.styles";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 
 const Cast = ({ credits }) => {
-	// console.log(credits.cast);
-
-	// credits.cast.map((cas) => {
-	// 	return console.log(cas);
-	// });
 	const NoImage = "https://bitsofco.de/content/images/2018/12/broken-1.png";
 	return (
 		<Container>

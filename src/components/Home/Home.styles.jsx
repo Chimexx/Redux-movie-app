@@ -65,6 +65,15 @@ export const HeaderText = styled.h4`
 	padding: 0 10px;
 	color: #09f;
 `;
+export const Spinner = styled.div`
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+	display: flex;
+	margin-left: auto;
+	margin-right: 0;
+	justify-content: center;
+	align-items: center;
+`;
 
 export const Input = styled.input`
 	height: 30px;
