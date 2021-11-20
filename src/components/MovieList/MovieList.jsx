@@ -5,7 +5,7 @@ import { Wrapper } from "./MovieList.styles.jsx";
 const MovieList = ({ movies }) => {
 	return (
 		<Wrapper>
-			{movies?.results?.map((movie) => {
+			{movies.results?.map((movie) => {
 				return <MovieCard key={movie.id} movie={movie} />;
 			})}
 		</Wrapper>

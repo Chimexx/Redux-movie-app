@@ -1,5 +1,3 @@
-@import "../src/common/colors.scss";
-
 * {
 	margin: 0;
 	padding: 0;
@@ -12,14 +10,10 @@ a {
 }
 
 body {
-	background-color: $primary-color;
-
-	a {
-		text-decoration: none;
-	}
+	background-color: #0f171e;
 }
 .container {
-	color: $font-primary;
+	color: #ffffff;
 	margin: 0 40px;
 	margin-top: 20px;
 
@@ -28,8 +22,8 @@ body {
 	}
 }
 .footer {
-	background-color: $secondary-color;
-	color: $font-primary;
+	background-color: #1a242f;
+	color: #ffffff;
 	padding: 0 40px;
 	margin-top: 20px;
 }

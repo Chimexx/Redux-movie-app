@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchAsyncCredits, fetchAsyncMovie, fetchAsyncMovies, fetchAsyncSearch } from "./apiCalls";
 
 const initialState = {
-	movies: [],
+	allMovies: [],
 	credits: [],
 	movie: [],
 	search: [],
@@ -14,10 +14,7 @@ const moviesSlice = createSlice({
 	name: "movies",
 	initialState,
 	reducers: {
-		// A reducer that resets the selected movie state to an empty array
-		// 	removeSelectedMovieOrShow: (state) => {
-		// 		state.selectedMovieOrShow = [];
-		// 	},
+		//reducers here
 	},
 	extraReducers: {
 		[fetchAsyncMovies.pending]: (state) => {
@@ -25,7 +22,7 @@ const moviesSlice = createSlice({
 		},
 
 		[fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-			return { ...state, movies: payload, isFetching: false };
+			return { ...state, allMovies: payload, isFetching: false };
 		},
 		[fetchAsyncMovies.rejected]: (state) => {
 			return { ...state, error: true, isFetching: false };
@@ -43,11 +40,5 @@ const moviesSlice = createSlice({
 	},
 });
 
-// export const { removeSelectedMovieOrShow } = movieSlice.actions;
-export const getMovies = (state) => state.movies.movies;
-export const getMovie = (state) => state.movies.movie;
-export const getCredits = (state) => state.movies.credits;
-export const getSearch = (state) => state.movies.search;
-export const isFetching = (state) => state.movies.isFetching;
-export const isError = (state) => state.movies.error;
+export const getState = (state) => state.movies;
 export default moviesSlice.reducer;
