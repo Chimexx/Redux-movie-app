@@ -15,7 +15,7 @@ const HeroImage = ({ image, title, text, fetching }) => {
 				<Content>
 					<Text>
 						<h1>{title}</h1>
-						<p>{text}</p>
+						<p>{text.slice(0, 300)}...</p>
 					</Text>
 				</Content>
 			</Wrapper>
